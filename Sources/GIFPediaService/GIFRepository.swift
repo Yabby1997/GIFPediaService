@@ -8,6 +8,6 @@
 import Foundation
 
 public protocol GIFRepository {
-    func search(query: String, limit: Int) async -> [GIF]
+    func search(query: String) async -> [GIF]
     func requestNext() async -> [GIF]
 }

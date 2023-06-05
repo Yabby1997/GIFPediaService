@@ -23,9 +23,9 @@ public final class GIFPediaService {
         self.gifRepository = gifRepository
     }
 
-    public func search(keyword: String, limit: Int) {
+    public func search(keyword: String) {
         Task {
-            gifs = await gifRepository.search(query: keyword, limit: limit)
+            gifs = await gifRepository.search(query: keyword)
         }
     }
 
