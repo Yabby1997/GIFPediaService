@@ -13,4 +13,18 @@ public struct GIF: Identifiable {
     public let thumbnailUrl: URL
     public let originalUrl: URL
     public let isLiked: Bool
+
+    public init(
+        id: String,
+        title: String,
+        thumbnailUrl: URL,
+        originalUrl: URL,
+        isLiked: Bool = false
+    ) {
+        self.id = id
+        self.title = title
+        self.thumbnailUrl = thumbnailUrl
+        self.originalUrl = originalUrl
+        self.isLiked = isLiked
+    }
 }
