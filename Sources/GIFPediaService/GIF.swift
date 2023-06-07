@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct GIF: Hashable {
+public struct GIF: Hashable, Equatable {
     public let id: String
     public let title: String
     public let thumbnailUrl: URL
