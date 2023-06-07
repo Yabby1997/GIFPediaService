@@ -28,6 +28,6 @@ public final class GIFPediaSearchService {
     }
 
     public func requestNext() async {
-        gifs += await gifRepository.requestNext()
+        gifs += await gifRepository.requestNext().filter { !gifs.contains($0) }
     }
 }
