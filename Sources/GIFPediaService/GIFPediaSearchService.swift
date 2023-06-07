@@ -1,5 +1,5 @@
 //
-//  GIFPediaService.swift
+//  GIFPediaSearchService.swift
 //  
 //
 //  Created by USER on 2023/06/06.
@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-public final class GIFPediaService {
+public final class GIFPediaSearchService {
 
     // MARK: - Dependencies
 
@@ -23,15 +23,11 @@ public final class GIFPediaService {
         self.gifRepository = gifRepository
     }
 
-    public func search(keyword: String) {
-        Task {
-            gifs = await gifRepository.search(query: keyword)
-        }
+    public func search(keyword: String) async {
+        gifs = await gifRepository.search(query: keyword)
     }
 
-    public func requestNext() {
-        Task {
-            gifs += await gifRepository.requestNext()
-        }
+    public func requestNext() async {
+        gifs += await gifRepository.requestNext()
     }
 }
