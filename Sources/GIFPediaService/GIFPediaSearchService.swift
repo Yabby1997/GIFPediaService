@@ -28,6 +28,8 @@ public final class GIFPediaSearchService {
     }
 
     public func requestNext() async {
-        gifs += await gifRepository.requestNext().filter { !gifs.contains($0) }
+        let new = await gifRepository.requestNext()
+        guard let duplicateRemovedGifs = NSOrderedSet(array: gifs + new).array as? [GIF] else { return }
+        gifs = duplicateRemovedGifs
     }
 }
