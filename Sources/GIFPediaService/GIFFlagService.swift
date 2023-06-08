@@ -30,6 +30,10 @@ public final class GIFFlagService {
 
     // MARK: - Public Methods
 
+    public func reload() {
+        flaggedGifs = gifPersistence.load()
+    }
+
     public func flag(gif: GIFEntity) {
         flaggedGifs = gifPersistence.save(gifs: flaggedGifs + [gif])
     }
