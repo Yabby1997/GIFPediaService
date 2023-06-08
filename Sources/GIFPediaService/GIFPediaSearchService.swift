@@ -16,20 +16,24 @@ public final class GIFPediaSearchService {
 
     // MARK: - Properties
 
-    @Published private var gifs: [GIF] = []
-    public var gifsPublisher: AnyPublisher<[GIF], Never> { $gifs.eraseToAnyPublisher() }
+    @Published private var searchedGifs: [GIFEntity] = []
+    public var gifsPublisher: AnyPublisher<[GIFEntity], Never> { $searchedGifs.eraseToAnyPublisher() }
+
+    // MARK: - Initializers
 
     public init(gifRepository: GIFRepository) {
         self.gifRepository = gifRepository
     }
 
+    // MARK: - Public Methods
+    
     public func search(keyword: String) async {
-        gifs = await gifRepository.search(query: keyword)
+        searchedGifs = await gifRepository.search(query: keyword)
     }
 
     public func requestNext() async {
         let new = await gifRepository.requestNext()
-        guard let duplicateRemovedGifs = NSOrderedSet(array: gifs + new).array as? [GIF] else { return }
-        gifs = duplicateRemovedGifs
+        guard let duplicateRemovedGifs = NSOrderedSet(array: searchedGifs + new).array as? [GIFEntity] else { return }
+        searchedGifs = duplicateRemovedGifs
     }
 }
