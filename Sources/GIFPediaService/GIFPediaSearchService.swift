@@ -32,8 +32,6 @@ public final class GIFPediaSearchService {
     }
 
     public func requestNext() async {
-        let new = await gifRepository.requestNext()
-        guard let duplicateRemovedGifs = NSOrderedSet(array: searchedGifs + new).array as? [GIFEntity] else { return }
-        searchedGifs = duplicateRemovedGifs
+        searchedGifs += await gifRepository.requestNext().filter { !searchedGifs.contains($0) }
     }
 }
